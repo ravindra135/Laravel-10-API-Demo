@@ -126,5 +126,44 @@
 
 * We use the `transaction()` method in the DB facade to trigger a transaction.
 
-### Robust API Responses;
+### Robust API Responses
+
+* Resource Class helps us to manage our `API JSON` response in one place.
+* It makes our API response to be more confident and maintainable.
+* We can use the `php artisan make:resource [fileName]` command to generate the resource boilerplate.
+
+### Paginated API Resources
+
+* Pagination is the notion of displaying  our query results by page, otherwise we would have to send everything to the client.
+* We call the paginate() method on our query to create a paginator. We can then pass the paginator to our resource collection for a paginated `JSON` response.
+
+### The Repository Pattern
+
+* Repository is a class that takes care of model operations.
+
+* Repository manages model operations in one place, and improves the maintainability of our app.
+
+### Exception Class & Error Handling
+
+* Creating custom exception classes in our app can ensure consistent API responses for error handling.
+
+* The `report()` method is responsible for reporting or logging the exception.
+
+* The `report()` helper function calls the report method in the specified exception class.
+
+* The `render()` method is responsible for send the error back to the HTTP Client.
+
+* The `abort()` helper function is a quick way to send back and error ressponse.
+
+### Using Event in a API Server
+
+* `Event Listeners` are classes / functions that get executed when an event is dispatched.
+
+* We define our Event - Event listener mapping in the `Event Service Provider`.
+
+* `Event Subscriber` is a class, that let us to group our event - listener mappings in one place.
+
+* We register Subscriber in the `protected $subscribe = [];` property in the Event Service Provider.
+
+### Building & Sending Emails
 

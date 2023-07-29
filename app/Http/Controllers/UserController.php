@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserCreated;
+use App\Exceptions\GeneralJsonException;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -23,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        //.
     }
 
     /**
@@ -31,7 +35,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return DB::transaction(function () use ($request) {
+            $created = User::query()->create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+                'email_verified' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            throw_if(!$created, GeneralJsonException::class, 'Failed to Create User');
+
+            event(new UserCreated($created));
+
+            return $created;
+        });
     }
 
     /**

@@ -19,7 +19,7 @@ class PostSeeder extends Seeder
     {
         $this->disableCheck();
         $this->truncate('posts');
-        Post::factory(3)->untitled()->create();
+        Post::factory(400)->untitled()->create();
         $this->enableCheck();
         
     }
