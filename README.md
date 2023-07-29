@@ -167,3 +167,20 @@
 
 ### Building & Sending Emails
 
+* `Laravel Mail` class offers us an easy way to define and send out application emails.
+
+* `Mailtrap.io` is a fake SMTP testing Service that allows us to test email in our local env. `Personal preference is mailhog`.
+
+* Laravel allows us to write our mail template in `markdown` syntax.
+
+* We can use the `Mail` facade to send out emails.
+
+### Unit Test vs Feature Test vs E2E (End 2 End) 
+
+* Unit Testing is the notion of testing the smallest unit/building blocks in out app i.e. functions. If the building blocks are working, then the app should work. (this is not necessarily true)
+
+* Feature Testing focuses on the feature and outcome rather than the individual fucntions. It is more reliable than Unit testing but slower.
+
+* End-to-End testing mocks the end users' behaviour and has the highest reliability. However, E2E is very hard to implement and very slow.
+
+### Unit Testing Essentials
