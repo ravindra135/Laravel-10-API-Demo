@@ -177,10 +177,72 @@
 
 ### Unit Test vs Feature Test vs E2E (End 2 End) 
 
+* Laravel Uses `PHPUnit` as its official testing library.
+
 * Unit Testing is the notion of testing the smallest unit/building blocks in out app i.e. functions. If the building blocks are working, then the app should work. (this is not necessarily true)
 
 * Feature Testing focuses on the feature and outcome rather than the individual fucntions. It is more reliable than Unit testing but slower.
 
 * End-to-End testing mocks the end users' behaviour and has the highest reliability. However, E2E is very hard to implement and very slow.
 
+* For Creating some Tests
+    * Feature: `php artisan make:test [Test_Name]`
+    * Unit: `php artisan make:test [Test_Name] --unit`
+
+* A Function without a test suffix `test_[function_name]` will be treated as a regular php function. So, test_ suffix is inportant. Or use 
+
+```php
+/*
+* @test
+* Test Anotation at the beginning of the functon
+*/
+```
+
 ### Unit Testing Essentials
+
+* Unit Testing is Used for testing functions.
+
+* Laravel provides a `TestCase` class which is basically an enhanced version of the one provided by PHPUnit. Laravel's TestCase loads a lot of helper methods for us to use.
+
+* We should write tests on both 'Happy Path' and 'Sad Path' for our functions.
+
+### Feature Testing Essentials
+
+* Testing a Group of Functions.
+
+* Providing the `-filter` flag to PHPUnit allows us to run a specific test.
+* `Event::fake()` stops events from dispatching in out app and allows us to capture and assert event dispatching.
+* The `json()` method allows us to easily perform HTTP requests to our API endpoints.
+
+### PHPUnit Live Reload Tests
+
+* `PHPUnit Watcher` is a wonderful package by 'Spatie' that automagically rerun our tests whenever there is a change in our source code.
+
+> composer require spatie/phpunit-watcher --dev
+
+* It is a great tool that will save us lots of time and make us happier in the long run.
+
+### Power Up with Composer Script
+
+* Composer scripts are handy shorthand that allows us to define and run complex commands.
+
+* If we want to pass arguments to our scripts, we need to supply an additional `'--'` after the script name.
+
+### Test Driven Development - TDD Intro
+
+* TDD is the idea of writing test first and write the code later.
+* In standard TDD, we would write the bare minimum code to pass our test and refactor our code as we progress to the more advanced tests.
+
+### Validating HTTP Requests
+
+* We can define Request class to easily validate incoming HTTP requests.
+
+* We inject Request class in controller methods to get Laravel to perfom validation on the incoming requests.
+
+* We can create custom validation rule either by closure or a dedicated rule class.
+
+### Custom Validation with Validator
+
+* Validator is an alternative way to validate input data other than using the Request class.
+
+* Validator has the benefit of providing us a lot of helper functions to work with validation.
