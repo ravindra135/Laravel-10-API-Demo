@@ -246,3 +246,43 @@
 * Validator is an alternative way to validate input data other than using the Request class.
 
 * Validator has the benefit of providing us a lot of helper functions to work with validation.
+
+### Config & ENV Variables
+
+* `config()` is a handy helper function to access configuration values from the cofig folder.
+
+* We use the `dot notation` to access the configuration.
+
+* `env()` is a helper function to access environmental variables.
+
+### Generating API Docs with Scribe
+
+* Recommended Package: [Scribe](https://scribe.knuckles.wtf/laravel)
+* Scrive is an amazing package that helps us to generate API documentation in a beautiful webpage.
+* We use the `@` directive in PHPDocs to provide details about our API endpoints.
+
+### Throttle & Rate Limiting
+
+* Throttle means to limit the number of operations in a given period of time.
+
+* The throttle middleware in Laravel helps to mitigate Denial-of-Service (DoS) attacks from malicious user.
+
+* We can define named Rate Limiter in Route Service Provider.
+* We can pass in the rate limiting config directly to the throttle middleware if we prefer not to use the named Rate Limiter.
+
+* KeyNote: For Imrpovements, we can use `ThrottleRequestsWithRedis` instead of default `Throttle` middleware. Change the Cache Driver to `Redis`
+
+### Fortify & Authentication Introduction
+
+* Laravel Fortify is a package that takes care of most authentication logic for us out of the box.
+
+* Fortify provides us several features out of the box:
+    - Registration
+    - Login
+    - Reset Password
+    - Email Verification
+    - Update Profile Information
+    - Update Password
+    - Two Factor Authentication (2FA)
+
+### Fortify: Authentication Registration & Password Reset
