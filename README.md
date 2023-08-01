@@ -365,3 +365,13 @@
 * We use `URL::temporarySignedRoute()` to create a link with expiration, while `URL::signedRoute()` to create a permanent protected link.
 
 * Laravel uses salted `sha256` to has the route as a measure to prevent modifications.
+
+### Notifications - All you need to Know.
+
+* Laravel Provides us a variety of drivers to send our notifications to our users, including mail, database, broadcast, slack and vonage.
+
+* There are many more community-maintained drivers, e.g. telegram, discord etc.
+
+* `php artisan make:notification` will generate the boilerplate to create a new notification class.
+
+* We can use `Notification::send()` or `$notifiable->notify()` to send out notifications.
