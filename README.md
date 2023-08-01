@@ -344,3 +344,16 @@
 
 ### How to Translate: Multilingual Apps
 
+* Internationalisation or `i18n` is the notion of providing translation to different locale.
+
+* By default, `lang` won't be there. We need to run the `php artisan lang:publish` command to publish language files.
+
+* We can use the `__()` or `Lang::get()` to retrieve translations from the language files.
+
+* Laravel puts all the translations files in `lang` folder.
+    - In Version 8 > `resources/lang` directory.
+    - In Version 9 or later > `./lang` directory.
+
+* We can choose to write our tanslation files in either php or json file format.
+
+* `trans_choice()` is a helper functions for us to handle pluralization.
