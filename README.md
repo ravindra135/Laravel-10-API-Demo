@@ -175,7 +175,7 @@
 
 * We can use the `Mail` facade to send out emails.
 
-### Unit Test vs Feature Test vs E2E (End 2 End) 
+## Unit Test vs Feature Test vs E2E (End 2 End) 
 
 * Laravel Uses `PHPUnit` as its official testing library.
 
@@ -272,7 +272,7 @@
 
 * KeyNote: For Imrpovements, we can use `ThrottleRequestsWithRedis` instead of default `Throttle` middleware. Change the Cache Driver to `Redis`
 
-### Fortify & Authentication Introduction
+## Fortify & Authentication Introduction
 
 * Laravel Fortify is a package that takes care of most authentication logic for us out of the box.
 
@@ -286,3 +286,61 @@
     - Two Factor Authentication (2FA)
 
 ### Fortify: Authentication Registration & Password Reset
+
+* Laravel protects all its web routes from CSRF attacks by default.
+* We need `Laravel Sanctum` if we want to protect our API routes from CSRF attacks.
+* We can use `Fortify Action` classes to customize the user registration logic along with other actions.
+* Password Reset requires a GET route with a route name of `password.reset` in order to work properly.
+
+### Fortify: Email Verification & Update User Profile
+
+* Fortify provides us a handy email verification feature to confirm the user's email address.
+
+* We can use the `verify` middleware to protect our app's routes.
+
+* We will need to implement the `MustVerifyEmail` interface to our user model for email verification to work.
+
+### Fortify: 2FA
+
+* The User model needs to use the `TwoFactorAuthenticatable` trait in order to 2FA to work properly.
+* The confirmPassword option will force the user to confirm their password when setting up 2FA.
+* Laravel will issue the user a new set of recovery codes if they log in via recovery code.
+
+### Fortify: Custom Email Verification
+
+* Laravel Fortify relies on the built-in `VerifyEmail` class provided by Laravel to send out verification email.
+
+* We call `VerifyEmail::toMailUsing()` to define our own logic to send out the verification notification.
+
+* We can encode information into Laravel's signed route for validation in the future.
+
+### Custom Authentication Logic
+
+* We use `Fortify::authenticateUsing()` to override the default authentication logic
+
+* `Fortify::authenticateThrough()` allows us to customise the authentication pipeline.
+
+* `Fortify::confirmPasswordUsing()` provides a way to customize the password confirmation logic.
+
+## Laravel Sanctum (Learn More)
+
+* Sanctum offers cookie-based authentication and token-based authentication.
+
+* Token is simple to setup and use but can be dangerous if it is stolen.
+
+* Cookie is harder to setup, but it will protect our app from `CSRF` and `XSS` attacks.
+
+* Cookie based authentication is sensitive to domain names, be sure to configure Sanctum before use.
+
+### Testing Authentication
+
+* Laravel provides us a convenient `actingAs()` method to login as any given user.
+
+* `setUp()` is a handy special function that runs before every test function.
+
+* `teardown()` is the opposite of `setup()`. It runs after every test function.
+
+* `actingAs()` accepts a second argument where we can specify which auth guard that we want to use.
+
+### How to Translate: Multilingual Apps
+
