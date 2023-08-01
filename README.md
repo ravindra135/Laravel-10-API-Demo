@@ -357,3 +357,11 @@
 * We can choose to write our tanslation files in either php or json file format.
 
 * `trans_choice()` is a helper functions for us to handle pluralization.
+
+### Share Private Links that Expires
+
+* We can use signed routes to protect our routes from unwanted modification.
+
+* We use `URL::temporarySignedRoute()` to create a link with expiration, while `URL::signedRoute()` to create a permanent protected link.
+
+* Laravel uses salted `sha256` to has the route as a measure to prevent modifications.
