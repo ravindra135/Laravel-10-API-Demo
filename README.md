@@ -375,3 +375,31 @@
 * `php artisan make:notification` will generate the boilerplate to create a new notification class.
 
 * We can use `Notification::send()` or `$notifiable->notify()` to send out notifications.
+
+### WebSockets
+
+* Websockers (WS) is a communication protocol to transmit data between computers, where it is commonly used in realtime apps.
+
+* In contrast to HTTP, WS persists and maintains its connection with the server, so the subsequent data transmission will be lightning fast.
+
+* There are 2 common WS app patters. PubSub and RPC.
+
+* PubSub involves 1 server that broadcasts messages to multiple clients. Commonly seen in financial apps where there is a need to stream realtime price data.
+
+* RPC is very similar to HTTP, where the client will send a request and expect a reply from the server. RPC can be used in messaging apps.
+
+### WebSockets and Broadcasting Config
+
+* Pusher, Ably, **Laravel Websockets (BeyondCode)**, Soketi, and Laravel Echo Server are websocket servers that are supported by Laravel.
+
+* Laravel Webscokets (BeyondCode) is a wonderfull open-source drop-in replacement for Pusher.
+
+* Laravel uses the PubSub Websocket pattern to publish real-time app Events.
+
+* We need to setup a queue driver for Laravel to broadcast websocket events.
+
+* The BroadcastServiceProvider should be enabled in the app config.
+
+* Laravel WebSockets exposed a debugging dashboard for our websocket connections.
+
+### Broadcasting & Channels
