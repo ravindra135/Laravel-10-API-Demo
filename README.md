@@ -403,3 +403,71 @@
 * Laravel WebSockets exposed a debugging dashboard for our websocket connections.
 
 ### Broadcasting & Channels
+
+* If a client wants to subscribe to a websocket channel in Laravel, the client will first perform a `HTTP handshake`, i.e. to authenticate the user before establishing a persisted websocket connection.
+
+* Event classes will need to implement the `ShouldBroadcast` interface before Laravel can broadcast them to the websocket.
+
+* We need to configure the host and port of the Pusher driver in `broadcasting.php` confif file to get Laravel to use our self-hosteed Laravel Websocket Server.
+
+* By default, Laravel will use the `Event FQCN` as the Event name. We can customize this by defining `broadcastAs()`.
+
+* `BroadcastWith()` is a way for us to attach data in the event payload.
+
+### Echo & Real Time Chat App
+
+* Echo is the official client JS library for us to subscribe and receive websocket event from the server.
+
+* `Echo.channel()` allows us to subscribe to a websocket channel.
+
+* `Echo.subscribed()` lets us to define a callback that will be triggered when we have successfully subscribed to a channel.
+
+* We use `listen()` to listen to websocket events.
+
+* We should use a `.` prefix when we want to listen to custom event in Echo.
+
+### Private and Presence Channel Broadcasts
+
+* Private and Presence channel will only allow authenticated user to join in. They uses the default auth guards to authenticate users.
+
+* Presence channel keeps track of all the subscribing clients while private channel doesn't.
+
+* We use `Echo.private()` for private channels and `Echo.join()` for presence channels.
+
+* We need to define an authorisation callback in `channels.php` for private and presence channels.
+
+* Private channel auth callback should return boolean, while presence should return the authenticated user instance.
+
+### P2P Web Socket
+
+* HTTP is rather slow for real-time application. It is quicker to communicate with the server through websocker connection.
+
+* `Whisper()` allows client to send events to each other without passing through Laravel.
+
+* `ListenToWhisper()` listens to peer events in the channel.
+
+### Sending Data without HTTP : WebSocket RPC
+
+* RPC or Remote Procedure Call is a websocket pattern that works very similarly to HTTP, following a "request and reply" pattern.
+
+* HTTP is rather slow, RPC could be faster alternative in real-time apps.
+
+* Laravel websockets allow us to work with the low level websocket API using websocket handlers.
+
+* Although it is faster, we need to write a fair amount of code to handle security as it is not provided out of the box.
+
+### Websocket with SSL
+
+* To Configure SSL certificate for Laravel Websockets:
+
+* Set certificate paths in `.env`
+
+* In broadcasting.php:
+    - Set encrypted to true
+    - Set scheme to https
+    - Set useTLS to true
+
+* For Echo:
+    - Set wssPort
+    - Set encrypted to true
+    - Set forceTLS to true
